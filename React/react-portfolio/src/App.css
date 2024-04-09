@@ -1,0 +1,29 @@
+/* App.css */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.ryan-photo {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.name {
+  /* Styling for the name */
+  margin-top: 20px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.cta {
+  /* Styling for the Call To Action button */
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+}
