@@ -6,10 +6,27 @@ const descriptions = [
     "Tech Enthusiast", "Problem Solver", "Artist"
 ];
 
+const fonts = [
+    "'Cormorant', serif",
+    "'Kaushan Script', cursive",
+    "'Oxygen', sans-serif",
+    "'Pacifico', cursive",
+    "'Quattrocento', serif",
+    "'Reddit Mono', monospace",
+    "'Rock Salt', cursive",
+    "'Space Grotesk', sans-serif",
+    "'VT323', monospace"
+];
+
+const getRandomFont = () => {
+    const randomIndex = Math.floor(Math.random() * fonts.length);
+    return fonts[randomIndex];
+};
+
 const photos = [
-    'assets/ryanPhoto1.jpeg',
-    'assets/ryanPhoto2.jpeg',
-    'assets/ryanPhoto3.jpeg'
+    'ryanPhoto1.jpeg',
+    'ryanPhoto2.jpeg',
+    'ryanPhoto3.jpeg'
 ];
 
 const getRandomStyle = () => {
@@ -29,59 +46,20 @@ const getRandomStyle = () => {
 };
 
 const Hero = () => {
-    const [currentPhoto, setCurrentPhoto] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentPhoto((prevPhoto) => (prevPhoto + 1) % photos.length);
-        }, 2000); // Change photo every 2 seconds
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div className="hero">
             {descriptions.map((desc, index) => (
                 <motion.div
                     key={index}
-                    style={getRandomStyle()}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.5, duration: 0.5 }}
+                    style={{ fontFamily: getRandomFont() }}
                 >
                     {desc}
                 </motion.div>
             ))}
-
-            {photos.map((photo, index) => (
-                <motion.img
-                    key={photo}
-                    src={photo}
-                    alt={`Ryan Pyles ${index + 1}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: currentPhoto === index ? 1 : 0 }}
-                    transition={{ duration: 1 }}
-                    className="ryan-photo"
-                />
-            ))}
-
-            <motion.div
-                className="name"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 6, duration: 1 }}
-            >
-                Ryan Pyles
-            </motion.div>
-
-            <motion.button
-                className="cta"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 6.5, duration: 1 }}
-            >
-                View My Work
-            </motion.button>
+            {/* Rest of your component */}
         </div>
     );
 };
